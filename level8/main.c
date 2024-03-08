@@ -1,6 +1,5 @@
 
 undefined4 main(void)
-
 {
   char cVar1;
   char *pcVar2;
@@ -17,40 +16,53 @@ undefined4 main(void)
   byte local_90 [5];
   char local_8b [2];
   char acStack_89 [125];
-  
+
   bVar12 = 0;
   do {
-    printf("%p, %p \n",auth,service);
-    pcVar2 = fgets((char *)local_90,0x80,stdin);
+    printf("%p, %p \n",auth,service); //Prints the welcome message
+    pcVar2 = fgets((char *)local_90,0x80,stdin); //Reads from stdin into local
     bVar7 = false;
     bVar10 = pcVar2 == (char *)0x0;
     if (bVar10) {
       return 0;
     }
-    iVar3 = 5;
-    pbVar5 = local_90;
+
+    pbVar5 = local_90; //Copy of read string
+    iVar3 = 5; //Lenght of string below
     pbVar6 = (byte *)"auth ";
-    do {
-      if (iVar3 == 0) break;
-      iVar3 = iVar3 + -1;
-      bVar7 = *pbVar5 < *pbVar6;
-      bVar10 = *pbVar5 == *pbVar6;
-      pbVar5 = pbVar5 + (uint)bVar12 * -2 + 1;
-      pbVar6 = pbVar6 + (uint)bVar12 * -2 + 1;
-    } while (bVar10);
+    do 
+    {
+      if (iVar3 == 0) break; //if 
+      iVar3 = iVar3 + -1; //Decrement counter, start from the end 
+      bVar7 = *pbVar5 < *pbVar6; //Test if current char from auth str is bigger than red string
+      bVar10 = *pbVar5 == *pbVar6; //Test if chars are equel, this is our exit condition
+      pbVar5++; //bvar12 is always 0 so advance in string
+      pbVar6++; //bvar12 is always 0 so advance in string
+    } while (bVar10); //Whiel strings are still 
+
+    /*
+      bVar10 = true if string are equal up untill the 5th character, 
+             = false otherwise
+      bVar7  = true if red string has a smaller char than auth up untill 5
+             = false otherwise
+      Both cannot be true but they can both be false
+    */
     uVar8 = 0;
     uVar11 = (!bVar7 && !bVar10) == bVar7;
+    //UVar11 
     if ((bool)uVar11) {
       auth = (undefined4 *)malloc(4);
       *auth = 0;
       uVar4 = 0xffffffff;
       pcVar2 = local_8b;
-      do {
+      do 
+      {
         if (uVar4 == 0) break;
         uVar4 = uVar4 - 1;
         cVar1 = *pcVar2;
         pcVar2 = pcVar2 + (uint)bVar12 * -2 + 1;
       } while (cVar1 != '\0');
+
       uVar4 = ~uVar4 - 1;
       uVar8 = uVar4 < 0x1e;
       uVar11 = uVar4 == 0x1e;
@@ -102,12 +114,17 @@ undefined4 main(void)
       uVar8 = *pbVar5 == *pbVar6;
       pbVar5 = pbVar5 + (uint)bVar12 * -2 + 1;
       pbVar6 = pbVar6 + (uint)bVar12 * -2 + 1;
-    } while ((bool)uVar8);
-    if ((!(bool)uVar11 && !(bool)uVar8) == (bool)uVar11) {
-      if (auth[8] == 0) {
+    } 
+    while ((bool)uVar8);
+    if ((!(bool)uVar11 && !(bool)uVar8) == (bool)uVar11) 
+    {
+      
+      if (auth[8] == 0) //We can easily reach this state
+      {
         fwrite("Password:\n",1,10,stdout);
       }
-      else {
+      else 
+      {
         system("/bin/sh");
       }
     }

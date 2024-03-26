@@ -7,3 +7,4 @@ The use of -fstack-protector, that adds extra code to prevent stack overflow att
 RELRO : 
 https://hockeyinjune.medium.com/relro-relocation-read-only-c8d0933faef3
 
+set disassembly-flavor intel

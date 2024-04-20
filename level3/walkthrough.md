@@ -12,7 +12,7 @@ No RELRO        No canary found   NX disabled   No PIE          No RPATH   No RU
 
 This time we have a call to fgets, which is safe.
 
-But right after a printf call, that directly uses the content of fgets as its format string (bad practice), and we can exploit that to change the value of the m global variable.
+But right after there is a printf call, that uses the content of fgets as its format string (bad practice). We can exploit that to change the value of the m global variable.
 
 This variable can be found at address 0x804988c and needs to have  or 64 as value but is set as 0.
 
@@ -27,7 +27,7 @@ level3@RainFall:~$ ./level3
 200 b7fd1ac0 b7ff37d0 25207825 78252078 20782520 25207825 78252078 20782520 25207825 78252078 20782520 25207825 78252078 bfff000a
 ```
 
-In order for the exploit listed above to work, we need to pass the m address as a printf argument, take note of its index, and have a modifier for said argument that will change its value, it's %n that will write to the param that must be a point, the number of bytes written, in that case 64
+In order for the exploit listed above to work, we need to pass the m address as a printf argument, take note of its index, and have a modifier for said argument that will change its value, it's %n that will write to the param that must be a pointer to an int, the number of bytes written, in that case 64
 
 ```
 ~$ python -c 'print("AAAA%x " * 20)'| ./level3

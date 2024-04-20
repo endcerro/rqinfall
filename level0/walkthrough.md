@@ -29,7 +29,6 @@ Looking at main we see two lines that are promising
 ```gdb
    0x08048ed4 <+20>:	call   0x8049710 <atoi>
    0x08048ed9 <+25>:	cmp    $0x1a7,%eax
-   echo $((16#1a7))    423
+   (gdb) printf "%d\n", 0x1a7
+   423
 ```
-
-Indeed they are

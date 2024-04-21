@@ -15,7 +15,7 @@ void N::setAnnotation(N *this,char *param_1)
     size_t n;
 
     n = strlen(param_1);
-    memcpy(this + 4,param_1,__n);
+    memcpy(this + 4,param_1, n);
     return;
 }
 

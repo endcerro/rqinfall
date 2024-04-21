@@ -14,7 +14,7 @@ int main(int ac, char** av)
     int *puVar3;
     FILE *stream;
 
-    buffer1 = (char *) malloc(8);   
+    buffer1 = (char *) malloc(8);
     buffer1[0] = 1;                 //[1][x]
     buffer1[1] = malloc(8);         //[1][PTR1]
     puVar3 = (int *)malloc(8);

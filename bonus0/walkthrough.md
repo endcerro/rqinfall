@@ -6,7 +6,7 @@ In terms of vulnerable functions we have a strcpy and strcat
 
 There is no system calls so we'll bring our shellcode
 
-First let's bring our pattern generator, and after two reads we get a crash with offset of 9, so we can take the whell and go whereever we want
+First let's bring our pattern generator, and after two reads we get a crash with offset of 9, so we can take the wheel and go wherever we want
 
 That being said, a 10 long code does not crash
 
